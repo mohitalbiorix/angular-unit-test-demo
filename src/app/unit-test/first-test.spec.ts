@@ -9,7 +9,7 @@ describe('my first test',()=>{
         sut.a = false;
         //act
         sut.a = true;
-        // assert
+        // assert 
         expect(sut.a).toBe(true)
 
     })
