@@ -8,7 +8,7 @@ describe('my first test',()=>{
         // arrange
         sut.a = false;
         //act
-        // sut.a = true;
+        sut.a = true;
         // assert 
         expect(sut.a).toBe(true)
 
