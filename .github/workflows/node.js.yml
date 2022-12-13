@@ -18,19 +18,23 @@ jobs:
       matrix:
         node-version: [14.x, 16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        
+    jobs:
+      test_strings:
+        name: test strings
+        runs-on: ubuntu-latest
+        steps:
+          - name: create string
+            run: |
+              MY_STRING="hello world"
+              echo "::set-output name=content::$MY_STRING"
+            id: my_string
+          - name: display string
+            run: |
+              echo "The string is: ${{ steps.my_string.outputs.content }}"
+
 
     steps:
-    - name: create string
-    - run: MY_STRING=$(cat << EOF
-          first line
-          second line
-          third line
-          EOF
-          )
-          echo "::set-output name=content::$MY_STRING"
-        id: my_string
-    - name: display string
-    - run: echo "The string is: ${{ steps.my_string.outputs.content }}"
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
