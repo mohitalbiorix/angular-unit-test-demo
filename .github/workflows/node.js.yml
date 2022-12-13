@@ -20,6 +20,17 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    - name: create string
+    - run: MY_STRING=$(cat << EOF
+          first line
+          second line
+          third line
+          EOF
+          )
+          echo "::set-output name=content::$MY_STRING"
+        id: my_string
+    - name: display string
+    - run: echo "The string is: ${{ steps.my_string.outputs.content }}"
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
