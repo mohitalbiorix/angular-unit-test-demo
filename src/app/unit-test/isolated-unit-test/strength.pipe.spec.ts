@@ -5,6 +5,7 @@ describe('StrengthPipe', () => {
     const pipe = new StrengthPipe();
     expect(pipe.transform(5)).toEqual('5 (weak) ')
   });
+  
 
   it('should display weak if strength is 6', () => {
     const pipe = new StrengthPipe();
