@@ -12,6 +12,7 @@ describe('HerosComponent', () => {
     })
     .compileComponents();
 
+    
     fixture = TestBed.createComponent(HerosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
