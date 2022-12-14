@@ -29,7 +29,7 @@ module.exports = function(config) {
     },
 
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../coverage/peach-tree'),
+      dir: require('path').join(__dirname, '../coverage'),
       subdir: '.',
       reporters: [
         { type: 'html' },
