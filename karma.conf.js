@@ -29,7 +29,7 @@ module.exports = function(config) {
     },
 
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../coverage/peach-tree'),
+      dir: require('path').join(__dirname, '../coverage'),
       subdir: '.',
       reporters: [
         { type: 'html' },
@@ -84,7 +84,9 @@ module.exports = function(config) {
     // how many browser instances should be started simultaneously
     concurrency: Infinity,
     plugins:[
-      require('karma-teamcity-reporter')
+      require('../../index'),
+      'karma-firefox-launcher',
+      'karma-mocha'
     ]
   })
 }
