@@ -32,9 +32,8 @@ module.exports = function(config) {
       dir: require('path').join(__dirname, '../coverage'),
       subdir: '.',
       reporters: [
-        { type: 'html' },
-        { type: 'text-summary' },
-        { type: 'lcovonly' },
+        { type: 'html', subdir: 'html-report' },
+        { type: 'lcov', subdir: 'lcov-report' }
       ],
       fixWebpackSourcePaths: true
     },
@@ -84,9 +83,11 @@ module.exports = function(config) {
     // how many browser instances should be started simultaneously
     concurrency: Infinity,
     plugins:[
-      require('../../index'),
-      'karma-firefox-launcher',
-      'karma-mocha'
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage'),
+      require('@angular-devkit/build-angular/plugins/karma')
     ]
   })
 }
