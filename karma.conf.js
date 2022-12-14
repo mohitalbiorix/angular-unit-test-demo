@@ -16,6 +16,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'src/**/*.js',
+      'test/**/*.js'
     ],
 
 
@@ -27,6 +29,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
+      'src/**/*.js': ['coverage']
     },
 
     coverageIstanbulReporter: {
@@ -42,6 +45,10 @@ module.exports = function(config) {
       environment: 'dev',
       codeCoverage: isCoverage
     },
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    },
     captureTimeout: 60000,
     browserDisconnectTimeout: 10000,
     browserDisconnectTolerance: 3,
@@ -55,7 +62,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://www.npmjs.com/search?q=keywords:karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress','coverage'],
 
 
     // web server port
@@ -87,12 +94,6 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser instances should be started simultaneously
     concurrency: Infinity,
-    plugins:[
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage'),
-      require('@angular-devkit/build-angular/plugins/karma')
-    ]
+    plugins:['karma-jasmin', 'karma-chrome-launcher', 'karma-coverage']
   })
 }
