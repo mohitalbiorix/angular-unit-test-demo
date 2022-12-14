@@ -31,7 +31,3 @@ jobs:
     - run: npm run test:prod
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
-        with: 
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: coverage/coverage-summary.json
-          title: Karma Test Coverage
