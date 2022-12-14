@@ -29,8 +29,13 @@ module.exports = function(config) {
     },
 
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../coverage'),
-      reports: ['html', 'lcovonly'],
+      dir: require('path').join(__dirname, '../coverage/peach-tree'),
+      subdir: '.',
+      reporters: [
+        { type: 'html' },
+        { type: 'text-summary' },
+        { type: 'lcovonly' },
+      ],
       fixWebpackSourcePaths: true
     },
     captureTimeout: 60000,
@@ -77,6 +82,9 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser instances should be started simultaneously
-    concurrency: Infinity
+    concurrency: Infinity,
+    plugins:[
+      require('karma-teamcity-reporter')
+    ]
   })
 }
