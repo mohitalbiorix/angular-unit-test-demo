@@ -31,3 +31,4 @@ jobs:
     - run: npm run test:prod
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
+        file: lcov.info
