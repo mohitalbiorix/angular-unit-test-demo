@@ -2,6 +2,7 @@
 // Generated on Mon Dec 12 2022 11:21:26 GMT+0530 (India Standard Time)
 
 module.exports = function(config) {
+  const isCoverage = config.coverage || false;
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -36,6 +37,10 @@ module.exports = function(config) {
         { type: 'lcov', subdir: 'lcov-report' }
       ],
       fixWebpackSourcePaths: true
+    },
+    angularCli: {
+      environment: 'dev',
+      codeCoverage: isCoverage
     },
     captureTimeout: 60000,
     browserDisconnectTimeout: 10000,
