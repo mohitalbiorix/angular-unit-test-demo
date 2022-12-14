@@ -19,9 +19,9 @@ describe('AppComponent', () => {
   });
 
 
-  it('should be AngularUnitTestApp in app component',()=>{
-    expect(component.showMessage(component.title)).toBe("AngularUnitTestApp")
-  })
+  // it('should be AngularUnitTestApp in app component',()=>{
+  //   expect(component.showMessage(component.title)).toBe("AngularUnitTestApp")
+  // })
 
   it('addition should be', ()=>{
     expect(addition(10,60)).toBeGreaterThan(20);
