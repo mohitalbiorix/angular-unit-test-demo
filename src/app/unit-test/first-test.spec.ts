@@ -3,7 +3,6 @@ describe('my first test',()=>{
     beforeEach(()=>{
      sut = {}   
     })
-
     it('should be true if true',()=>{
         // arrange
         sut.a = false;
