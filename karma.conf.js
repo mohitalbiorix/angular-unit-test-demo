@@ -35,6 +35,7 @@ module.exports = function (config) {
     coverageReporter: {
   /* … */
   check: {
+  emitWarning: false,
     global: {
       statements: 100,
       branches: 100,
