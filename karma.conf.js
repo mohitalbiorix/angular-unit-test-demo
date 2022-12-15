@@ -10,7 +10,8 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-threshold-reporter')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -23,21 +24,21 @@ module.exports = function (config) {
         { type: 'lcov', subdir: 'lcov-report' }
       ],
       fixWebpackSourcePaths: true,
-      
-    coverageReporter: {
-  /* … */
-  check: {
-  emitWarning: true,
-    global: {
-      statements: 100,
-      branches: 100,
-      functions: 100,
-      lines: 100,
+
+      // coverageReporter: {
+      //   /* … */
+      //   check: {
+      //     emitWarning: true,
+      //     global: {
+      //       statements: 100,
+      //       branches: 100,
+      //       functions: 100,
+      //       lines: 100,
+      //     },
+      //   },
+      // },
     },
-  },
-},
-    },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml','threshold'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -45,5 +46,11 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     restartOnFileChange: true,
+    thresholdReporter: {
+      statements: 100,
+      branches: 100,
+      functions: 100,
+      lines: 100
+    }
   });
 };
