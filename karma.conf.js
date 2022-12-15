@@ -32,11 +32,16 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     restartOnFileChange: true,
-    thresholdReporter: {
-      statements: 100,
-      branches: 100,
-      functions: 100,
-      lines: 100
-    }
+    coverageReporter: {
+  /* … */
+  check: {
+    global: {
+      statements: 75,
+      branches: 75,
+      functions: 75,
+      lines: 75,
+    },
+  },
+},
   });
 };
