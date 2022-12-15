@@ -22,7 +22,20 @@ module.exports = function (config) {
         { type: 'html', subdir: 'html-report' },
         { type: 'lcov', subdir: 'lcov-report' }
       ],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      
+    coverageReporter: {
+  /* … */
+  check: {
+  emitWarning: true,
+    global: {
+      statements: 100,
+      branches: 100,
+      functions: 100,
+      lines: 100,
+    },
+  },
+},
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
@@ -32,17 +45,5 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     restartOnFileChange: true,
-    coverageReporter: {
-  /* … */
-  check: {
-  emitWarning: false,
-    global: {
-      statements: 100,
-      branches: 100,
-      functions: 100,
-      lines: 100,
-    },
-  },
-},
   });
 };
