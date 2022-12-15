@@ -1,37 +1,21 @@
-// Karma configuration
-// Generated on Mon Dec 12 2022 11:21:26 GMT+0530 (India Standard Time)
+// Karma configuration file, see link for more information
+// https://karma-runner.github.io/1.0/config/configuration-file.html
 
-module.exports = function(config) {
-  const isCoverage = config.coverage || false;
+module.exports = function (config) {
   config.set({
-
-    // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
-
-
-    // frameworks to use
-    // available frameworks: https://www.npmjs.com/search?q=keywords:karma-adapter
-    frameworks: ['jasmine'],
-
-
-    // list of files / patterns to load in the browser
-    files: [
-      'src/**/*.js',
-      'test/**/*.js'
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage-istanbul-reporter'),
+      require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-threshold-reporter')
     ],
-
-
-    // list of files / patterns to exclude
-    exclude: [
-    ],
-
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
-    preprocessors: {
-      'src/**/*.js': ['coverage']
+    client: {
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../coverage'),
       subdir: '.',
@@ -39,61 +23,34 @@ module.exports = function(config) {
         { type: 'html', subdir: 'html-report' },
         { type: 'lcov', subdir: 'lcov-report' }
       ],
-      fixWebpackSourcePaths: true
-    },
-    angularCli: {
-      environment: 'dev',
-      codeCoverage: isCoverage
-    },
-    coverageReporter: {
-      type : 'html',
-      dir : 'coverage/'
-    },
-    captureTimeout: 60000,
-    browserDisconnectTimeout: 10000,
-    browserDisconnectTolerance: 3,
-    browserNoActivityTimeout: 60000,
-    flags: [
-      '--disable-web-security',
-      '--disable-gpu',
-      '--no-sandbox'
-    ],
+      fixWebpackSourcePaths: true,
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://www.npmjs.com/search?q=keywords:karma-reporter
-    reporters: ['progress','coverage'],
-
-
-    // web server port
+      // coverageReporter: {
+      //   /* … */
+      //   check: {
+      //     emitWarning: true,
+      //     global: {
+      //       statements: 100,
+      //       branches: 100,
+      //       functions: 100,
+      //       lines: 100,
+      //     },
+      //   },
+      // },
+    },
+    reporters: ['progress', 'kjhtml','threshold'],
     port: 9876,
-
-
-    // enable / disable colors in the output (reporters and logs)
     colors: true,
-
-
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
-
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
-
-
-    // start these browsers
-    // available browser launchers: https://www.npmjs.com/search?q=keywords:karma-launcher
+    autoWatch: true,
     browsers: ['Chrome'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
     singleRun: false,
-
-    // Concurrency level
-    // how many browser instances should be started simultaneously
-    concurrency: Infinity,
-    plugins:['karma-jasmin', 'karma-chrome-launcher', 'karma-coverage']
-  })
-}
+    restartOnFileChange: true,
+    thresholdReporter: {
+      statements: 100,
+      branches: 100,
+      functions: 100,
+      lines: 100
+    }
+  });
+};
